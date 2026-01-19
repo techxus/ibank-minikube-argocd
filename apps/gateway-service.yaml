@@ -6,12 +6,12 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: <YOUR_GIT_REPO_SSH_OR_HTTPS_URL>
+    repoURL: https://github.com/techxus/ibank-minikube-gitops
     targetRevision: main
     path: charts/gateway-service
     helm:
       valueFiles:
-        - ../../env/local/gateway-values.yaml
+        - ../../env/local/gateway-service-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: apps
