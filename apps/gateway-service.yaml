@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gateway-service
+  namespace: platform
+spec:
+  project: default
+  source:
+    repoURL: <YOUR_GIT_REPO_SSH_OR_HTTPS_URL>
+    targetRevision: main
+    path: charts/gateway-service
+    helm:
+      valueFiles:
+        - ../../env/local/gateway-values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: apps
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
